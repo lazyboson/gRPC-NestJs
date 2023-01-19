@@ -4,14 +4,14 @@ syntax = "proto3";
 package hero;
 
 service HeroesService {
-  rpc FindOne (HeroById) returns (Hero) {}
+  rpc FindOne (IHeroById) returns (IHero) {}
 }
 
-message HeroById {
+message IHeroById {
   int32 id = 1;
 }
 
-message Hero {
+message IHero {
   int32 id = 1;
   string name = 2;
 }
