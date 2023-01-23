@@ -3,7 +3,7 @@
 
 
 ```angular2html
-Server can be started at 3001 port using following command
+Server can be started at 5001 port using following command
 1.  npm i -g @nestjs/cli
 2.  npm i --save @grpc/grpc-js @grpc/proto-loader
 3.  npm install
@@ -17,5 +17,5 @@ Server can be started at 3001 port using following command
 To Run client - 
 1. cd client
 1. go mod tidy
-2. go run cmd/main.go
+2. go run pkg/cmd/main.go
 ```
