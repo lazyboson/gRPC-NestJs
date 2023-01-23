@@ -3,15 +3,15 @@ syntax = "proto3";
 
 package hero;
 
-service HeroesService {
-  rpc FindOne (IHeroById) returns (IHero) {}
+service HeroService {
+  rpc FindOne (HeroById) returns (Hero) {}
 }
 
-message IHeroById {
+message HeroById {
   int32 id = 1;
 }
 
-message IHero {
+message Hero {
   int32 id = 1;
   string name = 2;
 }
