@@ -1,4 +1,5 @@
-### Simple GRPC Server in TypeScript using NestJS
+### Server and Client GRPC
+### Simple GRPC Server 
 
 
 ```angular2html
@@ -9,4 +10,12 @@ Server can be started at 3001 port using following command
 4.  npm run lint -- --fix
 5. tsc
 6. npm run start:dev
+```
+### Run Client
+
+```angular2html
+To Run client - 
+1. cd client
+1. go mod tidy
+2. go run cmd/main.go
 ```
