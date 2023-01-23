@@ -8,8 +8,9 @@ async function bootstrap() {
     {
       transport: Transport.GRPC,
       options: {
+        url: 'localhost:3001',
         package: 'hero',
-        protoPath: join(__dirname, './hero/hero.proto'),
+        protoPath: join(__dirname, './hero/proto/hero.proto'),
       },
     },
   );

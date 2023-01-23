@@ -1,3 +1,3 @@
-export interface IHeroById {
+export interface HeroById {
   id: number;
 }

@@ -6,17 +6,17 @@ import {
 } from '@nestjs/microservices';
 import { Observable, ReplaySubject, Subject } from 'rxjs';
 import { toArray } from 'rxjs/operators';
-import { IHeroById } from './interfaces/hero.interface';
-import { IHero } from './interfaces/hero-by-id.interface';
+import { HeroById } from './interfaces/hero.interface';
+import { Hero } from './interfaces/hero-by-id.interface';
 
-interface HeroService {
-  findOne(data: IHeroById): Observable<IHero>;
-  findMany(upstream: Observable<IHeroById>): Observable<IHero>;
+export interface HeroService {
+  findOne(data: HeroById): Observable<Hero>;
+  findMany(upstream: Observable<HeroById>): Observable<Hero>;
 }
 
 @Controller('hero')
 export class HeroController implements OnModuleInit {
-  private readonly items: IHero[] = [
+  private readonly items: Hero[] = [
     { id: 1, name: 'John' },
     { id: 2, name: 'Doe' },
   ];
@@ -29,8 +29,8 @@ export class HeroController implements OnModuleInit {
   }
 
   @Get()
-  getMany(): Observable<IHero[]> {
-    const ids$ = new ReplaySubject<IHeroById>();
+  getMany(): Observable<Hero[]> {
+    const ids$ = new ReplaySubject<HeroById>();
     ids$.next({ id: 1 });
     ids$.next({ id: 2 });
     ids$.complete();
@@ -40,20 +40,20 @@ export class HeroController implements OnModuleInit {
   }
 
   @Get(':id')
-  getById(@Param('id') id: string): Observable<IHero> {
+  getById(@Param('id') id: string): Observable<Hero> {
     return this.heroService.findOne({ id: +id });
   }
 
   @GrpcMethod('HeroService')
-  findOne(data: IHeroById): IHero {
+  findOne(data: HeroById): Hero {
     return this.items.find(({ id }) => id === data.id);
   }
 
   @GrpcStreamMethod('HeroService')
-  findMany(data$: Observable<IHeroById>): Observable<IHero> {
-    const hero$ = new Subject<IHero>();
+  findMany(data$: Observable<HeroById>): Observable<Hero> {
+    const hero$ = new Subject<Hero>();
 
-    const onNext = (heroById: IHeroById) => {
+    const onNext = (heroById: HeroById) => {
       const item = this.items.find(({ id }) => id === heroById.id);
       hero$.next(item);
     };
