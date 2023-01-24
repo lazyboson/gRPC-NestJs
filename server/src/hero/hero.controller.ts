@@ -18,6 +18,7 @@ export class HeroController implements OnModuleInit {
   private readonly items: Hero[] = [
     { id: 1, name: 'John' },
     { id: 2, name: 'Doe' },
+    { id: 3, name: 'ashutosh' },
   ];
   private heroService: HeroService;
 
